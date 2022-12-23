@@ -1,2 +1,11 @@
 ---
 # tasks file for 1password-secrets
+- name: Make sure 1password-cli is installed
+  homebrew_cask:
+    name: 1password-cli
+    state: present
+
+- name: Inject secrets using 1password-cli
+  command:
+    cmd: op inject -i templates/{{ secrets_file }}.tpl -o vars/{{ secrets_file }}
+    creates: vars/{{ secrets_file }}

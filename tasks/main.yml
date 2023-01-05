@@ -7,5 +7,5 @@
 
 - name: Inject secrets using 1password-cli
   command:
-    cmd: op inject -i templates/{{ secrets_file }}.tpl -o vars/{{ secrets_file }}
-    creates: vars/{{ secrets_file }}
+    cmd: op inject -i {{  inventory_dir | dirname }}/templates/{{ secrets_file }}.tpl -o {{  inventory_dir | dirname }}/vars/{{ secrets_file }}
+    creates: "{{  inventory_dir | dirname }}/vars/{{ secrets_file }}"

@@ -1,5 +1,24 @@
 ---
 - hosts: localhost
-  remote_user: root
+  vars:
+    secrets_file: tests/secrets.json
+
+  environment:
+    PATH: "/opt/homebrew/bin/:/usr/local/bin/:{{ ansible_env.PATH }}"
+
   roles:
-    - 1password-secrets
+    - ../../
+
+  tasks:
+    - debug:
+        var: secrets
+
+- hosts: all
+
+  pre_tasks:
+    - set_fact:
+        op_secrets: "{{ hostvars['localhost']['secrets'] | default({}) }}"
+
+  tasks:
+    - debug:
+        var: op_secrets['test']['username']

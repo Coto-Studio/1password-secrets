@@ -7,7 +7,7 @@
 
 - name: Inject secrets using 1password-cli
   command:
-    cmd: "op inject -i {{  inventory_dir | dirname }}/{{ secrets_file }}"
+    cmd: "op inject -i {{ secrets_file }}"
   register: op_json
 
 - name: Create secrets variable

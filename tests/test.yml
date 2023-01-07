@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
+  gather_facts: false
   vars:
-    secrets_file: tests/secrets.json
+    secrets_file: "{{  inventory_dir | dirname }}/tests/secrets.json"
 
   environment:
     PATH: "/opt/homebrew/bin/:/usr/local/bin/:{{ ansible_env.PATH }}"

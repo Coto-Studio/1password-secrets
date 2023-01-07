@@ -9,7 +9,9 @@
   command:
     cmd: "op inject -i {{ secrets_file }}"
   register: op_json
+  no_log: true
 
 - name: Create secrets variable
   set_fact:
     secrets: "{{ op_json['stdout'] | from_json }}"
+  no_log: true
